@@ -263,6 +263,12 @@ _AWS_CLI_ARCH="${_AWS_CLI_ARCH:-"$_DEFAULT_ARCH"}"
 
 
 ### Main
+if ! command -v aws &> /dev/null; then
+    msg_log "aws cli already installed, skipping installation"
+    aws --version
+    exit
+fi
+
 set_workdir "$_WORKDIR"
 validate_semantic_version "$_AWS_CLI_VERSION"
 set_download_tool
